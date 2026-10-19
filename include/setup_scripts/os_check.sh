@@ -19,7 +19,7 @@ detect_os()
     version_id="$(. /etc/os-release && printf '%s' "${VERSION_ID}")"
 
     case "${os_id}:${version_id}" in
-        debian:13 | ubuntu:24 | ubuntu:26)
+        debian:13 | debian:13.* | ubuntu:24.04 | ubuntu:26.04)
             printf '%s\n' "debian13"
             ;;
         rocky:10 | rocky:10.*)

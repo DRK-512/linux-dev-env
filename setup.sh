@@ -38,7 +38,7 @@ config() {
 
         INPUT_USER=""
         # Check if the program was ran with sudo
-        if [[ "$EUID" -eq 0 ]] && [[ -e $SUDO_USER ]]; then
+        if [[ "$EUID" -eq 0 && -n "${SUDO_USER:-}" ]]; then
                 INPUT_USER=$SUDO_USER
         else
                 INPUT_USER=$(id -un)
@@ -73,7 +73,6 @@ main() {
         sudo touch ~/.sudo_as_admin_successful
 
         log_success "Success! please run the following then reboot your machine"
-        log_success "newgrp docker"
 }
 
 main "$@"

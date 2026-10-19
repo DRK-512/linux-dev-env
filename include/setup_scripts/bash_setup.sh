@@ -122,6 +122,7 @@ color_setup() {
         ./setup.sh )
 
         # Tmux color scheme
+        [[ ! -d ~/.tmux ]] && mkdir -p ~/.tmux
         cp -r ./include/tmux/themes/ ~/.tmux/
         cp ./include/tmux/tmux.conf ~/.tmux.conf
 

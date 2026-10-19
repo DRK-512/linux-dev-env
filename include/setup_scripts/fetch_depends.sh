@@ -51,7 +51,7 @@ package_setup()
                 rocky10)
                         rocky10_package_fetch
                         ;;
-                arch)
+                archlinux)
                         arch_package_fetch
                         ;;
                 *)
@@ -60,14 +60,14 @@ package_setup()
         esac
         # Configure Podman for rootless operation
         sudo mkdir -p /etc/containers && \
-        sudo echo '[engine]' > /etc/containers/containers.conf && \
-        sudo echo 'cgroup_manager = "cgroupfs"' >> /etc/containers/containers.conf && \
-        sudo echo 'events_logger = "file"' >> /etc/containers/containers.conf
+        sudo echo '[engine]' | sudo tee /etc/containers/containers.conf && \
+        sudo echo 'cgroup_manager = "cgroupfs"' | sudo tee -a /etc/containers/containers.conf && \
+        sudo echo 'events_logger = "file"' | sudo tee -a /etc/containers/containers.conf
 
         # Set storage driver to vfs (works better in nested containers)
         sudo mkdir -p /etc/containers && \
-        sudo echo '[storage]' > /etc/containers/storage.conf && \
-        sudo echo 'driver = "vfs"' >> /etc/containers/storage.conf
+        sudo echo '[storage]' | sudo tee /etc/containers/storage.conf && \
+        sudo echo 'driver = "vfs"' | sudo tee -a /etc/containers/storage.conf
 }
 
 dispatch()
@@ -92,18 +92,3 @@ dispatch()
                         ;;
         esac
 }
-
-main()
-{
-        # Parse arguments
-        parse_args "$@"
-
-        dispatch "${1:-all}"
-
-        # Since we completed the dependacy check, we will create a stamp so we dont have to run this with every build
-        log_success "Dependacies have been checked"
-        log_info "If using a container with this script, it may hang for a few minutes to write everything to the container"
-}
-
-# Execute main function
-main "$@"
