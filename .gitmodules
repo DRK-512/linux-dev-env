@@ -1,0 +1,9 @@
+[submodule "include/synth-shell"]
+	path = include/synth-shell
+	url = https://github.com/DRK-512/synth-shell.git
+[submodule "include/tmux/themes/oasis"]
+	path = include/tmux/themes/oasis
+	url = https://github.com/uhs-robert/tmux-oasis.git
+[submodule "include/alacritty"]
+	path = include/alacritty
+	url = https://github.com/alacritty/alacritty-theme

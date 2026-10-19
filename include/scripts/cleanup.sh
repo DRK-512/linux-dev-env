@@ -7,6 +7,7 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
     exit 0
 fi
 
+
 sudo apt update -y
 sudo apt upgrade -y 
 sudo apt dist-upgrade -y

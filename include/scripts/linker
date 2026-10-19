@@ -30,7 +30,7 @@ while IFS= read -r -d '' script_file; do
     
     # Check if the script is executable
     if [[ ! -x "$script_file" ]]; then
-        log_warn "$script_file is not executable. Making it executable..."
+        log_warning "$script_file is not executable. Making it executable..."
         chmod +x "$script_file"
     fi
     
@@ -42,11 +42,11 @@ while IFS= read -r -d '' script_file; do
             ((skipped_count++))
             continue
         else
-            log_warn "Removing existing symbolic link: $link_path"
+            log_warning "Removing existing symbolic link: $link_path"
             rm "$link_path"
         fi
     elif [[ -e "$link_path" ]]; then
-        log_warn "File $link_path already exists and is not a symbolic link. Skipping..."
+        log_warning "File $link_path already exists and is not a symbolic link. Skipping..."
         ((skipped_count++))
         continue
     fi
