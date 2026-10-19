@@ -20,18 +20,12 @@ rocky10_package_fetch()
     sudo dnf install -y 'dnf-command(config-manager)'
     sudo dnf config-manager --set-enabled crb
     sudo dnf --refresh install -y doxygen flex-devel
+    sudo dnf install -y epel-release
 
     MISSING_DNF_LIST=()
     # Check if dnf packages are already installed
     for key in "${DNF_PACKAGE_LIST[@]}"; do
         if ! rpm -q "$key" &> /dev/null; then
-            # Enable EPEL repository for additional packages if needed
-            if [[ "${key}" == "pandoc" ]] || [[ "${key}" == "zeromq-devel" ]]; then
-                if ! rpm -q epel-release &> /dev/null; then
-                    log_info "Enabling EPEL repository ..."
-                    sudo dnf install -y epel-release
-                fi
-            fi
 
             # Enable CodeReady Builder (CRB) for development tools
             if [[ "${key}" == "gcc-aarch64-linux-gnu" ]] || [[ "${key}" == "gcc-c++-aarch64-linux-gnu" ]]; then

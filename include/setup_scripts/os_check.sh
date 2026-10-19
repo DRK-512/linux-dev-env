@@ -19,14 +19,14 @@ detect_os()
     version_id="$(. /etc/os-release && printf '%s' "${VERSION_ID}")"
 
     case "${os_id}:${version_id}" in
-        debian:13 | debian:13.* | ubuntu:24.04 | ubuntu:26.04)
+        debian:13 | debian:13.* | ubuntu:26.04)
             printf '%s\n' "debian13"
             ;;
         rocky:10 | rocky:10.*)
             printf '%s\n' "rocky10"
             ;;
-        archlinux:*)
-            printf '%s\n' "archlinux"
+        arch:*)
+            printf '%s\n' "arch"
             ;;
         *)
             log_error "Unsupported OS '${os_id}' version '${version_id}'. Compatible: Debian 13, Rocky Linux 10"

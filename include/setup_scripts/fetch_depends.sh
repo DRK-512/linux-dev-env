@@ -51,7 +51,7 @@ package_setup()
                 rocky10)
                         rocky10_package_fetch
                         ;;
-                archlinux)
+                arch)
                         arch_package_fetch
                         ;;
                 *)
