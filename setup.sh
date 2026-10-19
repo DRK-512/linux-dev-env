@@ -3,7 +3,7 @@
 # Reference the README to learn about this script
 config() {
         if [[ -f "$SCRIPT_DIR/../scripts/config.sh" ]]; then
-                # shellcheck source=./config.sh
+                # shellcheck source=./include/scripts/config.sh
                 source "$SCRIPT_DIR/../scripts/config.sh"
         else
                 echo -e "\e[31mERROR: Cannot find config.sh\e[0m"
@@ -20,16 +20,25 @@ config() {
         [[ -f "$SCRIPT_DIR/python.sh" ]] && \
         [[ -f "$SCRIPT_DIR/rocky.sh" ]] && \
         [[ -f "$SCRIPT_DIR/rust.sh" ]]; then
-        
+                # shellcheck source=./include/setup_scripts/arch.sh
                 source "$SCRIPT_DIR/arch.sh"
+                # shellcheck source=./include/setup_scripts/bash_setup.sh
                 source "$SCRIPT_DIR/bash_setup.sh"
+                # shellcheck source=./include/setup_scripts/debian.sh
                 source "$SCRIPT_DIR/debian.sh"
+                # shellcheck source=./include/setup_scripts/fetch_depends.sh
                 source "$SCRIPT_DIR/fetch_depends.sh"
+                # shellcheck source=./include/setup_scripts/net.sh
                 source "$SCRIPT_DIR/net.sh"
+                # shellcheck source=./include/setup_scripts/os_check.sh
                 source "$SCRIPT_DIR/os_check.sh"
+                # shellcheck source=./include/setup_scripts/packages.sh
                 source "$SCRIPT_DIR/packages.sh"
+                # shellcheck source=./include/setup_scripts/python.sh
                 source "$SCRIPT_DIR/python.sh"
+                # shellcheck source=./include/setup_scripts/rocky.sh
                 source "$SCRIPT_DIR/rocky.sh"
+                # shellcheck source=./include/setup_scripts/rust.sh
                 source "$SCRIPT_DIR/rust.sh"
 
         else

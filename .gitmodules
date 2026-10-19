@@ -4,3 +4,6 @@
 [submodule "include/tmux/themes/oasis"]
 	path = include/tmux/themes/oasis
 	url = https://github.com/uhs-robert/tmux-oasis.git
+[submodule "include/alacritty/themes"]
+	path = include/alacritty/themes
+	url = https://github.com/alacritty/alacritty-theme

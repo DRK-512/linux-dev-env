@@ -214,10 +214,9 @@ check_rust()
     # Cargo tools -- check both root and the user's cargo bin
     for tool in "${CARGO_TOOLS[@]}"; do
         local found=0
+        tool_check=$tool
         if [[ $tool == "kani-verifier" ]]; then
-            tool_check="kani"
-        else
-            tool_check=$tool
+            tool_check="kani"   
         fi
         if command -v "$tool_check" &> /dev/null; then
             found=1
