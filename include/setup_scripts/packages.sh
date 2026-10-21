@@ -17,16 +17,15 @@ export DNF_PACKAGE_LIST=(
     "gcc-c++" "gcc" "bc" "make" "pkgconf-pkg-config" "cmake" "cmake-gui" "git"
     "python3" "python3-pip" "python3-devel" "python3-lxml" "python3-cryptography"
     "pipx" "expat-devel" "graphviz" "doxygen" "ncurses-libs" "ncurses-devel"
-    "can-utils" "rsync" "wget" "gnupg2" "curl" "jq" "flex" "alacritty" "podman"
+    "can-utils" "rsync" "wget" "gnupg2" "curl" "jq" "flex" "podman"
     "gcc-aarch64-linux-gnu" "gcc-c++-aarch64-linux-gnu" "openssl" "openssl-devel"
     "sqlite-devel" "shellcheck" "libX11-devel" "libXi-devel" "libXrandr-devel"
     "libXcursor-devel" "systemd-devel" "libssh2-devel" "gcc-plugin-devel" "clang"
     "clang-tools-extra" "autoconf" "automake" "libtool" "pylint" "rustfmt" "llvm"
     "valgrind" "zip" "unzip" "openssh-clients" "openssh-server" "vim-enhanced"
-    "neovim" "wireshark" "tcpdump" "net-tools" "gparted" "nmap" "tmux" "dbus-x11"
-    "libreoffice" "btop" "bat" "gdb" "xclip" "powerline-fonts" "lm_sensors"
-    "container-tools" "fuse-overlayfs" "ca-certificates" "dconf-cli"
-    "docker-ce" "docker-ce-cli" "containerd.io" "docker-buildx-plugin" "docker-compose-plugin"
+    "neovim" "wireshark" "tcpdump" "net-tools"  "nmap" "tmux" "dbus-x11"
+    "btop" "bat" "gdb" "xclip" "powerline-fonts" "lm_sensors"
+    "container-tools" "fuse-overlayfs" "ca-certificates" 
 )
 
 export PACMAN_PACKAGE_LIST=(

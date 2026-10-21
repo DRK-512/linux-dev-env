@@ -74,8 +74,9 @@ main() {
         python_setup
 
         bashrc_setup
-        nvim_config
-        color_setup
+        nvim_setup
+        alacritty_setup
+	color_setup
         setup_scripts
 
         # Create sudo file so user is not notified

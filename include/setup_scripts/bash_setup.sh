@@ -62,7 +62,7 @@ EOF
         log_success "Bashrc has been configured"
 }
 
-nvim_config() {
+nvim_setup() {
         # Install latest nvim
         wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
         tar -xvf nvim-linux-x86_64.tar.gz
@@ -87,29 +87,27 @@ nvim_config() {
         [ -d ~/.fonts/AnonymousPro ] && rm -rf ~/.fonts/AnonymousPro
         mv AnonymousPro/ ~/.fonts/
         
-        [[ -d ~/.config/alacritty-old ]] && rm -rf ~/.config/alacritty-old
-        [[ -d ~/.config/alacritty ]] && mv ~/.config/alacritty ~/.config/alacritty-old
-        cp -r ./include/alacritty/ ~/.config/
-
-        log_info "I always set my terminal to alacrity, but if you like the default or another, select as you please"
-        sudo update-alternatives --config x-terminal-emulator
-        # If the user does select alacrity I will set the CTRL+ALT+T for them
-        if [[ "$(readlink -f /etc/alternatives/x-terminal-emulator)" == "$(command -v alacritty)" ]]; then
-                # Disable GNOME's built-in Ctrl+Alt+T so it won't conflict
-                gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "[]"
-
-                # Define a custom keybinding in slot custom0
-                key="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-                # Set the binding
-                gsettings set "$key" name 'Alacritty'
-                gsettings set "$key" command "$(command -v alacritty)"   # full path is safest
-                gsettings set "$key" binding '<Control><Alt>t'
-
-                # Register the slot in the list of custom keybindings
-                gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
-                "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-        fi
         log_success "Neovim has been installed correctly"
+}
+
+alacritty_setup() {
+        log_info "Installing alacritty"
+	[[ -d "~/.config/alacritty-old/" ]] && rm -rf ~/.config/alacritty-old
+        if [[ -d "~/.config/alacritty/" ]]; then
+		mv ~/.config/alacritty ~/.config/alacritty-old
+	else
+		mkdir -p ~/.config/alacritty/
+	fi
+        cp -r ./include/alacritty/themes ~/.config/alacritty/
+        cp ./include/alacritty/alacritty.toml ~/.config/alacritty/
+        cd ./include/alacritty/src/
+        cargo build --release
+	cargo install alacritty
+	cd ../../../
+        log_info "I always set my terminal to alacrity, but if you like the default or another, select as you please"
+	sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 50
+        sudo update-alternatives --config x-terminal-emulator
+        log_success "Successfully setup alacritty"
 }
 
 color_setup() {
