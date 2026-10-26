@@ -7,3 +7,6 @@
 [submodule "include/alacritty/themes"]
 	path = include/alacritty/themes
 	url = https://github.com/alacritty/alacritty-theme
+[submodule "include/alacritty/src"]
+	path = include/alacritty/src
+	url = https://github.com/alacritty/alacritty.git
